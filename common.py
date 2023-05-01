@@ -1,8 +1,8 @@
 import telebot
-
 from telebot import types
 from payment import payment_start
 import payment
+import donation2
 #from save import API_KEY
 bot=telebot.TeleBot("6203741928:AAEQ9FykRyvZyEdJBAAnml8JAwXZfkVV4Mg", parse_mode=None)
 import telebot
@@ -45,8 +45,16 @@ def handle_callback_query(call):
     # Save the user's favorite color from the inline keyboard
     color = call.data
     if color == 'Donating clothes':
+        keyboard = types.InlineKeyboardMarkup()
+        button_click_here = types.InlineKeyboardButton('Donation Clothes', callback_data='/start_clothes_donate')
+        keyboard.add(button_click_here)
+        bot.send_message(call.message.chat.id, 'Welcome to Clothes Donation! Please click the button below to continue:', reply_markup=keyboard)
+        donation2.bot = bot
+        bot.register_next_step_handler(call.message, donation2.donation_start)
+    elif color == '/start_clothes_donate':
+        bot.send_message(call.message.chat.id, 'Please, enter your fullname?') 
+        bot.register_next_step_handler(call.message, donation2.get_donation_info2)
     
-        bot.send_message(call.message.chat.id, f"Make donation in https://www.google.com/search?q=clothing%20donation%20near%20me&oq=cloth+donation+n&aqs=chrome.1.69i57j0i10i19i512j0i19i512l2j0i10i19i512j0i19i512j0i19i22i30l4.6749j0j7&sourceid=chrome&ie=UTF-8&tbs=lf:1,lf_ui:10&tbm=lcl&sxsrf=APwXEdfgut-c8COiwHMstclxjmWZTBi9_g:1679862347602&rflfq=1&num=10&rldimm=4032413088880745271&lqi=ChljbG90aGluZyBkb25hdGlvbiBuZWFyIG1lIgOQAQFIm4rxjPuvgIAIWi0QABABGAAYAhgDIhljbG90aGluZyBkb25hdGlvbiBuZWFyIG1lKgYIAxAAEAGSARNiYWJ5X2Nsb3RoaW5nX3N0b3JlqgFPCgkvbS8wMjA0c24KCC9tLzA5ajJkEAEqFSIRY2xvdGhpbmcgZG9uYXRpb24oADIfEAEiGzdwf5JaEGPxyQXwyuwlfMhDi4aLn9gZ2C6JkA&phdesc=jgoUKBc5XhI&ved=2ahUKEwjbhoD0tvr9AhUtlosKHVMhApYQvS56BAgNEAE&sa=X&rlst=f#rlfi=hd:;si:4032413088880745271,l,ChljbG90aGluZyBkb25hdGlvbiBuZWFyIG1lIgOQAQFIm4rxjPuvgIAIWi0QABABGAAYAhgDIhljbG90aGluZyBkb25hdGlvbiBuZWFyIG1lKgYIAxAAEAGSARNiYWJ5X2Nsb3RoaW5nX3N0b3JlqgFPCgkvbS8wMjA0c24KCC9tLzA5ajJkEAEqFSIRY2xvdGhpbmcgZG9uYXRpb24oADIfEAEiGzdwf5JaEGPxyQXwyuwlfMhDi4aLn9gZ2C6JkA,y,jgoUKBc5XhI;mv:[[56.252399000000004,22.4715644],[50.5030041,-4.6355883]];tbs:lrf:!1m4!1u3!2m2!3m1!1e1!1m4!1u2!2m2!2m1!1e1!2m1!1e2!2m1!1e3!3sIAE,lf:1,lf_ui:10")
     elif color == 'Walking pets':
         # Send a love sticker
         bot.send_photo(call.message.chat.id, 'https://www.shutterstock.com/image-photo/portrait-cat-dog-looking-camera-260nw-1929069635.jpg')
@@ -61,7 +69,7 @@ def handle_callback_query(call):
     elif color=='cat':
         bot.send_photo(call.message.chat.id, 'https://www.jacksongalaxy.com/wp-content/uploads/2018/08/walk.jpg')
         Mon_button = types.InlineKeyboardButton('Monday', callback_data='Monday')
-        Tue_button = types.InlineKeyboardButton('Tuseday', callback_data='Tuseday')
+        Tue_button = types.InlineKeyboardButton('Tuesday', callback_data='Tuesday')
         Wed_button = types.InlineKeyboardButton('Wednsday', callback_data='Wednsday')
         Thu_button = types.InlineKeyboardButton('Thursday', callback_data='Thursday')
         Fri_button = types.InlineKeyboardButton('Friday', callback_data='Friday')
@@ -75,8 +83,8 @@ def handle_callback_query(call):
     elif color=='dog':
         bot.send_photo(call.message.chat.id, 'https://www.cesarsway.com/wp-content/uploads/2015/06/6-tips-for-mastering-the-dog-walk.jpg')
         Mon_button = types.InlineKeyboardButton('Monday', callback_data='Monday')
-        Tue_button = types.InlineKeyboardButton('Tuseday', callback_data='Tuseday')
-        Wed_button = types.InlineKeyboardButton('Wednsday', callback_data='Wednsday')
+        Tue_button = types.InlineKeyboardButton('Tuesday', callback_data='Tuesday')
+        Wed_button = types.InlineKeyboardButton('Wednesday', callback_data='Wednesday')
         Thu_button = types.InlineKeyboardButton('Thursday', callback_data='Thursday')
         Fri_button = types.InlineKeyboardButton('Friday', callback_data='Friday')
         Sat_button = types.InlineKeyboardButton('Saturday', callback_data='Saturday')
@@ -91,7 +99,10 @@ def handle_callback_query(call):
         keyboard.add(button_click_here)
         bot.send_message(call.message.chat.id, 'Please click the button below to continue:', reply_markup=keyboard)
         payment.bot = bot
-        bot.register_next_step_handler(call.message, payment_start)
+        #bot.register_next_step_handler(call.message, payment_start)
+    elif color == '/payment_start':
+        bot.send_message(call.message.chat.id, 'Please, enter your fullname?') 
+        bot.register_next_step_handler(call.message, payment.get_response2)
     elif color=='Monday':
         
         
@@ -104,7 +115,7 @@ def handle_callback_query(call):
         
         
         bot.send_message(call.message.chat.id, 'Choose a time?', reply_markup=week_keyboard)
-    elif color=='Tuseday':
+    elif color=='Tuesday':
         markup = types.ReplyKeyboardMarkup(row_width=1)
         A_button = types.KeyboardButton('13:00-15:00')
         B_button = types.KeyboardButton('15:00-17:00')
