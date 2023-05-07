@@ -1,0 +1,96 @@
+body,
+html
+{
+	width: 100%;
+	height: 100%;
+	
+	font-family: 'Titillium Web', sans-serif;
+	background: url(https://static.independent.co.uk/s3fs-public/thumbnails/image/2015/08/28/15/rexfeatures_845638j.jpg?quality=75&width=1200&auto=webp) no-repeat center center fixed; 
+   -webkit-background-size: cover;
+   -moz-background-size: cover;
+   -o-background-size: cover;
+    background-size: cover;
+}
+h1
+{
+	font-size: 3rem;
+	color: #e2dbdb;
+	margin-left: 20px;
+}
+
+.btn
+{
+	font-weight: 700px;
+	border-radius: 300rem;
+	font-size: 20px;
+	text-transform: uppercase;
+	
+
+}
+.btn-xl
+{
+	padding: 1rem 3rem;
+	
+
+}
+.btn-primary
+{
+	background-color: #F05F44;
+	border-color: #F05F44;
+
+}
+.btn-primary:hover{
+	background-color:#ee4b08;
+	border-color: #ee4b08;
+	border-width: 4px;
+}
+
+.buffer{
+	height: 10rem;
+}
+.wrap
+{
+	display: flex;
+	flex-wrap: wrap;
+}
+.card
+{
+	margin: 100px 150px 100px 150px;
+}
+.butts
+{
+	text-align: center;
+}
+h5
+{
+	color: #F05F44;
+}
+.mynav
+{
+	background-image: url('https://static.independent.co.uk/s3fs-public/thumbnails/image/2015/08/28/15/rexfeatures_845638j.jpg?quality=75&width=1200&auto=webp');
+}
+.navbar
+{
+	background-color: transparent !important;
+}
+.navbar .navbar-nav
+{
+	margin: 0 auto;
+}
+h4
+{
+	font-size: 3rem;
+	border-bottom: 1px pink;
+	border-right: 1px black;
+}
+table,th,td
+{
+	font-weight: bold;
+	color: black;
+	width: 1200px;
+	margin: auto;
+    padding: 20px;
+    text-align: center;
+	border: 2px solid black;
+
+}
