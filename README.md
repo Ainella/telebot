@@ -1,4 +1,4 @@
-# telebot
+# Telebot
 A simple and efficient Telegram bot built with Python, designed to automate tasks and provide various functionalities.
 
 ## Features
